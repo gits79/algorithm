@@ -1,5 +1,10 @@
 n, m, k = map(int, input().split())
 
-count = 0
-x = 0
+answer = []
+for i in range(k + 1):
+    x = n - i
+    y = m - (k - i)
+    count = min(x // 2, y)
+    answer.append(count)
 
+print(max(answer))
