@@ -15,7 +15,7 @@ for _ in range(n):
 
 height = 0
 area = 0
-count = 0
+
 for i in range(1, max_height + 1):
     if arr[i] > height:
         height = arr[i]
