@@ -1,10 +1,12 @@
+import sys
+input = sys.stdin.readline
+
 n, m = map(int, input().split())
 
 arr = []
 arr.append([0] * (n + 1))
 for _ in range(n):
-    temp = list(map(int, input().split()))
-    temp.insert(0, 0)
+    temp = [0] + list(map(int, input().split()))
     arr.append(temp)
 
 prefix_sum = [[0] * (n + 1) for i in range(n + 1)]
