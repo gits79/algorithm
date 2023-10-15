@@ -7,7 +7,6 @@ for i in range(10):
     arr.append(int(input()))
 
 num = [0] * 1001
-
 for i in arr:
     num[i] += 1
 
