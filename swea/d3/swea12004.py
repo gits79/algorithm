@@ -9,6 +9,7 @@ for tc in range(1, t+1):
 
     b = n // a
 
+
     if a >= 1 and a <= 9 and b >= 1 and b <= 9:
         print(f'#{tc} Yes')
     else:
