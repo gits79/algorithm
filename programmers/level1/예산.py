@@ -9,4 +9,5 @@ def solution(d, budget):
         else:
             break
 
+
     return answer
