@@ -11,6 +11,7 @@ for i in range(t):
         n -= b
     elif a > b:
         m -= a
+        
 
 print(n)
 print(m)
