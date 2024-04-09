@@ -1,11 +1,14 @@
 def duple2(n):
-    is_chk = [False] * 10
-    n = str(n)
-    for i in n:
-        if is_chk[int(i)]:
-            return False
+    is_chk = [True] * 10
+
+    while n > 0:
+        temp = n % 10
+        n //= 10
+        if is_chk[temp]:
+            is_chk[temp] = False
         else:
-            is_chk[int(i)] = True
+            return False
+
     return True
 
 
