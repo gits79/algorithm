@@ -5,7 +5,6 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		int n1 = Integer.parseInt(st.nextToken());
 		int n2 = Integer.parseInt(st.nextToken());
@@ -16,11 +15,8 @@ public class Main {
 		Collections.sort(list1);
 		int n3 =list1.get(list1.size()-1);
 		int n4 = n1 * n2 / n3;
-		sb.append(n3).append("\n").append(n4).append("\n");
-		bw.write(sb.toString());
-		bw.flush();
-		bw.close();
-		br.close();
+        System.out.println(n3);
+        System.out.println(n4);
 	}
 	
 	static Set<Integer> findNumbers(int n) {
