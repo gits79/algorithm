@@ -32,7 +32,9 @@ public class Main {
             int y = Integer.parseInt(st.nextToken());
 
             int start = 0;
-            int end = N;
+            int end = N - 1;
+
+            if(y > L) continue;
 
             while (start <= end) {
                 int mid = (start + end) / 2;
@@ -50,11 +52,13 @@ public class Main {
                     start = mid + 1;
                 }
 
+
             }
 
         }
 
         System.out.println(cnt);
+
 
     }
 }
