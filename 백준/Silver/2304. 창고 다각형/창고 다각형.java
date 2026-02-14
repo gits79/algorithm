@@ -1,43 +1,40 @@
-
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
+import java.io.*;
 
 public class Main {
-	public static int size = 1002;
+    public static final int size = 1002;
+    static int N;
+    static int[] arr = new int[size];
+    static int[] prefix = new int[size + 1];
+    static int[] suffix = new int[size + 1];
 
-	public static void main(String[] args) throws Exception {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st;
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-		int n = Integer.parseInt(br.readLine());
-		int[] arr = new int[size];
+        N = Integer.parseInt(br.readLine());
 
-		for (int i = 0; i < n; i++) {
-			st = new StringTokenizer(br.readLine());
-			arr[Integer.parseInt(st.nextToken())] = Integer.parseInt(st.nextToken());
-		}
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            arr[a] = b;
+        }
 
-		int[] prefix = new int[size + 1];
-		int[] suffix = new int[size + 1];
+        for (int i = 1; i < size; i++) {
+            prefix[i] = Math.max(arr[i], prefix[i - 1]);
+        }
 
+        for (int i = size - 1; i > 0; i--) {
+            suffix[i] = Math.max(suffix[i + 1], arr[i]);
+        }
 
-		for (int i = 1; i < size; i++) {
-			prefix[i] = Math.max(arr[i], prefix[i - 1]);
-		}
+        int sum = 0;
+        for (int i = 0; i < size; i++) {
+            sum += Math.min(prefix[i], suffix[i]);
+        }
 
-		for (int i = size - 1; i > 0; i--) {
-			suffix[i] = Math.max(arr[i], suffix[i + 1]);
-		}
+        System.out.println(sum);
 
-		int answer = 0;
-
-		for (int i = 1; i < size; i++)
-			answer += Math.min(suffix[i], prefix[i]);
-
-		System.out.println(answer);
-
-	}
+    }
 }
