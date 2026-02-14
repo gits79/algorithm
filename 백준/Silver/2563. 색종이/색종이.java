@@ -1,43 +1,41 @@
-
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
-	public static void main(String[] args) throws Exception {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		int n = Integer.parseInt(br.readLine());
-		int[][] arr = new int[n][2];
-		StringTokenizer st;
+    static int N, X = 101, Y = 101;
+    static int[][] map = new int[X][Y];
 
-		for (int i = 0; i < n; i++) {
-			st = new StringTokenizer(br.readLine());
-			for (int j = 0; j < 2; j++) {
-				arr[i][j] = Integer.parseInt(st.nextToken());
-			}
-		}
 
-		int[][] area = new int[100][100];
+    static int sum() {
+        int summ = 0;
+        for (int i = 0; i < X; i++) {
+            for (int j = 0; j < Y; j++) {
+                summ += map[i][j];
+            }
+        }
+        return summ;
+    }
 
-		for (int i = 0; i < n; i++) {
-			int x = arr[i][0];
-			int y = arr[i][1];
-			for (int j = x; j < x + 10; j++) {
-				for (int k = y; k < y + 10; k++) {
-					area[j][k] = 1;
-				}
-			}
-		}
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-		int cnt = 0;
-		for (int i = 0; i < 100; i++)
-			for (int j = 0; j < 100; j++)
-				cnt += area[i][j];
+        N = Integer.parseInt(br.readLine());
 
-		System.out.println(cnt);
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine());
+            int x = Integer.parseInt(st.nextToken());
+            int y = Integer.parseInt(st.nextToken());
+            for (int j = x; j < x + 10; j++) {
+                for (int k = y; k < y + 10; k++) {
+                    map[j][k] = 1;
+                }
+            }
+        }
 
-	}
+        System.out.println(sum());
+
+
+    }
 }
