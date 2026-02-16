@@ -4,41 +4,32 @@ class Solution {
     
     static final int[] di = {-1, 0, 1, 0};
     static final int[] dj = {0, 1, 0, -1};
-    
-    static int N, M;
+    static int x, y;
     static boolean[][] v;
     
-    static boolean chkIdx(int n, int m){
-        return (0 <= n && n < N && 0 <= m && m < M);
-    }
-    
-    static int bfs(int[][] maps) {
+    static int bfs(int i, int j, int[][] maps) {
         ArrayDeque<int[]> q = new ArrayDeque<>();
-        v[0][0] = true;
-        q.offer(new int[]{0 , 0});
+        q.offer(new int[]{i, j});
+        v[i][j] = true;
         
         int cnt = 1;
-        
         while(!q.isEmpty()) {
             int size = q.size();
-            
             while(--size >= 0) {
                 int[] ij = q.poll();
-                int i = ij[0];
-                int j = ij[1];
+                i = ij[0];
+                j = ij[1];
                 
-                if(i == N - 1 && j == M - 1) return cnt;
+                if(i == maps.length -1 && j == maps[0].length - 1) return cnt;
                 
                 for(int d = 0; d < 4; d++) {
                     int ni = i + di[d];
                     int nj = j + dj[d];
-                    if(chkIdx(ni, nj) && !v[ni][nj] && maps[ni][nj] == 1) {
+                    if(0 <= ni && ni < maps.length && 0 <= nj && nj < maps[0].length && maps[ni][nj] == 1 && !v[ni][nj]) {
                         v[ni][nj] = true;
                         q.offer(new int[]{ni, nj});
-                        
                     }
                 }
-                
             }
             cnt++;
         }
@@ -46,14 +37,11 @@ class Solution {
         return -1;
     }
     
-    
     public int solution(int[][] maps) {
         int answer = 0;
-        N = maps.length;
-        M = maps[0].length;
-        v = new boolean[N][M];
+        v = new boolean[maps.length][maps[0].length];
         
-        answer = bfs(maps);
+        answer = bfs(0, 0, maps);
         
         return answer;
     }
